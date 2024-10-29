@@ -1,3 +1,5 @@
+import math
+
 
 #______________________________________________________________________________
 # Simple Data Structures: infinity, Dict, Struct
@@ -536,12 +538,6 @@ class FIFOQueue(Queue):
         self.A.extend(items)
 
     def pop(self):
-        # e = self.A[self.start]
-        # self.start += 1
-        # if self.start > 5 and self.start > len(self.A) / 2:
-        #     self.A = self.A[self.start:]
-        #     self.start = 0
-        # return e
         return self.A.pop(0)
     
 class BranchAndBound(Queue):
@@ -562,14 +558,28 @@ class BranchAndBound(Queue):
         sorted(self.A, key=lambda x: x.path_cost)
 
     def pop(self):
-        # e = self.A[self.start]
-        # self.start += 1
-        # if self.start > 5 and self.start > len(self.A) / 2:
-        #     self.A = self.A[self.start:]
-        #     self.start = 0
-        # return e
         return self.A.pop(0)
 
+class BranchAndBoundHeuristic(Queue):
+    """A First-In-First-Out Queue."""
+
+    def __init__(self,problem):
+        self.A = []
+        self.start = 0
+        self.problem = problem
+
+    def append(self, item):
+        self.A.append(item)
+
+    def __len__(self):
+        return len(self.A) - self.start
+
+    def extend(self, items):
+        self.A.extend(items)
+        self.A = sorted(self.A, key=lambda x: x.path_cost+self.problem.h(x))
+
+    def pop(self):
+        return self.A.pop(0)
 
 
 ## Fig: The idea is we can define things like Fig[3,10] later.

@@ -536,12 +536,39 @@ class FIFOQueue(Queue):
         self.A.extend(items)
 
     def pop(self):
-        e = self.A[self.start]
-        self.start += 1
-        if self.start > 5 and self.start > len(self.A) / 2:
-            self.A = self.A[self.start:]
-            self.start = 0
-        return e
+        # e = self.A[self.start]
+        # self.start += 1
+        # if self.start > 5 and self.start > len(self.A) / 2:
+        #     self.A = self.A[self.start:]
+        #     self.start = 0
+        # return e
+        return self.A.pop(0)
+    
+class BranchAndBound(Queue):
+    """A Branch And Bound Queue."""
+
+    def __init__(self):
+        self.A = []
+        self.start = 0
+
+    def append(self, item):
+        self.A.append(item)
+
+    def __len__(self):
+        return len(self.A) - self.start
+
+    def extend(self, items):
+        self.A.extend(items)
+        sorted(self.A, key=lambda x: x.path_cost)
+
+    def pop(self):
+        # e = self.A[self.start]
+        # self.start += 1
+        # if self.start > 5 and self.start > len(self.A) / 2:
+        #     self.A = self.A[self.start:]
+        #     self.start = 0
+        # return e
+        return self.A.pop(0)
 
 
 

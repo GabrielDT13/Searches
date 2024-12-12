@@ -1,0 +1,10 @@
+En primer lugar, se van a usar distintos tipos de busquedas: BFS (anchura), DFS (en profundidad), Branch and Bound (ramificacion y acotación) y el Branch And Bound con heuristica.
+
+1- En search (a mitad) definimos el tipo de busqueda donde le pasamos el problema y el tipo de busqueda que usamos a la funcion graph search el cual coge el nodo lo añade a la lista, si el nuestro destino se acaba el problema si no lo expandimos y cogemos sus hijos y el nodo visitado lo metemos en la lista cerrada.
+
+2- En el BFS usamos una FIFO, el cual añade a la cola (por detras) el nodo correspondiente, lo mira y lo saca y lo pone en la lista de visitados, y coge sus vecinos y los mete en la cola por detras, es decir añade por detras y los mira por delante,
+3- En el DFS usamos una pila (stack), pues una vez cogemos un nodo lo miramos y lo soltamos.
+4- El BB, es parecido a la FIFO, pero la diferencia es que el cuando añade a la cola los ordena por el path_cost (el costo del movimiento para visitar ese nodo) (sorted del extend)
+5- En el BB con heuristica tenemos una nueva variable que es la heuristica (viene dada con el probema cunado invocamos en search) (el cual en este caso se mide por la distancia2 (ya implementada en utils linea 367) por el eje de cordenadas de cada nodo). Entonces cuando vamos a expandir los nodos, ordenamos los nodos a añadir por la suma del path_cost y la heuristica del problema.
+
+6- Por último ponemos un contador para ver cuantos nodos se han visitado y cunatos se han expandido para ver que tipo de busqueda es mejor con respecto a las demas (Heuristica es mejor). Los contadores, los ponemos en el graph search que es donde visitamos los nodos y los expandimos.

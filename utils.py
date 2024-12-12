@@ -561,7 +561,7 @@ class BranchAndBound(Queue):
         return self.A.pop(0)
 
 class BranchAndBoundHeuristic(Queue):
-    """A First-In-First-Out Queue."""
+    """A Branch And Bound Queue with Heuristic."""
 
     def __init__(self,problem):
         self.A = []

@@ -1,14 +1,13 @@
+"""Searches - Grupo 43 - Gabriel Dominguez Torres y Meng Fei Dai"""
 """Search (Chapters 3-4)
 
 The way to use this code is to subclass Problem to create a class of problems,
 then create problem instances and solve them with calls to the various search
 functions."""
 
-
 from utils import *
 import random
 import sys
-
 
 # ______________________________________________________________________________
 
@@ -92,6 +91,10 @@ class Node:
 
 # ______________________________________________________________________________
 ## Uninformed Search algorithms
+"""graph_search, creamos 2 contadores (count_visited y count_extended) en el que
+imprime por pantalla en cada iteración la cantidad de nodos visitados y expandidos hasta
+llegar al objetivo."""
+
 def graph_search(problem, fringe):
     """Search through the successors of a problem to find a goal.
     The argument fringe should be an empty queue.
@@ -113,19 +116,26 @@ def graph_search(problem, fringe):
             print("Nodos expandidos: ", count_extended)
     return None
 
+"""Definimos el tipo de busqueda donde le pasamos el problema y el tipo
+de busqueda que usamos a la funcion graph search el cual coge el nodo lo añade a la lista, si
+el nuestro destino se acaba el problema si no lo expandimos y cogemos sus hijos y el nodo
+visitado lo metemos en la lista cerrada."""
 
+"""BFS (Anchura)"""
 def breadth_first_graph_search(problem):
     """Search the shallowest nodes in the search tree first. [p 74]"""
     return graph_search(problem, FIFOQueue())  # FIFOQueue -> fringe
 
-
+"""DFS (En Profundidad)"""
 def depth_first_graph_search(problem):
     """Search the deepest nodes in the search tree first. [p 74]"""
     return graph_search(problem, Stack())
 
+"""Branch And Bound (Ramificación y Acotación)"""
 def branch_and_bound_graph_search(problem):
     return graph_search(problem, BranchAndBound())
 
+"""Branch And Bound With Heuristic (Ramificación y Acotación con Subestimación)"""
 def branch_and_bound_heuristic_graph_search(problem):
     return graph_search(problem, BranchAndBoundHeuristic(problem))
 

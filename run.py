@@ -1,4 +1,12 @@
 # Search methods
+"""Searches - Grupo 43 - Gabriel Dominguez Torres y Meng Fei Dai
+
+Ejecutamos el programa printeando las 4 funciones (BFS (anchura), DFS (en profundidad),
+Branch and Bound (ramificacion y acotación) y el Branch And Bound con heuristica.) creada en
+el search.py para comprobar de forma visual cuál es la estrategia más optima. El programa
+muestra un recuento de los nodos visitados y expandidos en cada iteración con cada estrategia.
+Comprobando en su última iteración cuál de las estrategia es más óptimo. En este caso la
+mejor estrategia sería el Branch And Bound con heuristica."""
 
 import search
 

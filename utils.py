@@ -515,12 +515,14 @@ class Queue:
         for item in items:
             self.append(item)
 
+"""Searches - Grupo 43 - Gabriel Dominguez Torres y Meng Fei Dai"""
 
+"""El uso de una Stack (pila) sería coger y soltar el nodo visitado"""
 def Stack():
     """Return an empty list, suitable as a Last-In-First-Out Queue."""
     return []
 
-
+"""El FIFO realiza un vistazo al nodo escogido, lo inserta en la cola y luego expande a sus hijos"""
 class FIFOQueue(Queue):
     """A First-In-First-Out Queue."""
 
@@ -540,6 +542,11 @@ class FIFOQueue(Queue):
     def pop(self):
         return self.A.pop(0)
     
+"""Creamos 2 nuevas clases  (BranchAndBound(Queue) y BranchAndBoundHeuristic(Queue))"""
+
+"""En el BranchAndBound(Queue), es parecido a la FIFO, pero la diferencia es que el cuando añade
+a la cola los ordena por el path_cost (el costo del movimiento para visitar ese nodo)
+(sorted del extend)"""
 class BranchAndBound(Queue):
     """A Branch And Bound Queue."""
 
@@ -560,6 +567,11 @@ class BranchAndBound(Queue):
     def pop(self):
         return self.A.pop(0)
 
+"""En el BranchAndBoundHeuristic(Queue) tenemos una nueva variable que es la heuristica
+(viene dada con el problema cuando invocamos en search) (el cual en este caso se mide por la
+distancia2 (ya implementada en utils linea 367) por el eje de cordenadas de cada nodo).
+Entonces cuando vamos a expandir los nodos, ordenamos los nodos a añadir por la suma del
+path_cost y la heuristica del problema."""
 class BranchAndBoundHeuristic(Queue):
     """A Branch And Bound Queue with Heuristic."""
 
@@ -579,7 +591,7 @@ class BranchAndBoundHeuristic(Queue):
         self.A = sorted(self.A, key=lambda x: x.path_cost+self.problem.h(x))
 
     def pop(self):
-        return self.A.pop()
+        return self.A.pop(0)
 
 
 ## Fig: The idea is we can define things like Fig[3,10] later.
